@@ -18,6 +18,21 @@ add_library(algotithms STATIC
     algorithms/shellSortSh.cpp
     algorithms/stableCountingSort.cpp)
 
+add_library(opcountalgs STATIC
+    opcountalgs/binaryInsertionSort.cpp
+    opcountalgs/bubbleSort.cpp
+    opcountalgs/bubbleSortI1.cpp
+    opcountalgs/bubbleSortI2.cpp
+    opcountalgs/quickSort.cpp
+    opcountalgs/insertionSort.cpp
+    opcountalgs/mergeSort.cpp
+    opcountalgs/pyramideSort.cpp
+    opcountalgs/radixSort.cpp
+    opcountalgs/selectionSort.cpp
+    opcountalgs/shellSortCr.cpp
+    opcountalgs/shellSortSh.cpp
+    opcountalgs/stableCountingSort.cpp)
+
 add_library(checker STATIC
     checker.cpp)
 
@@ -25,4 +40,5 @@ add_executable(chw1 main.cpp)
 
 target_link_libraries(chw1 PRIVATE
     checker
-    algotithms)
+    algotithms
+    opcountalgs)

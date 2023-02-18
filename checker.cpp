@@ -1,5 +1,6 @@
 #include <chrono>
 #include <fstream>
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -43,7 +44,6 @@ std::vector<std::vector<int>> timer(void (*func)(int *, int, int), std::string p
   int *arr = new int[data.n];
   int step = data.n == 300 ? 50 : 100;
   std::vector<std::vector<int>> times(data.n / step, std::vector<int>(10));
-  //
   for (int n = step; n <= data.n; n += step) {
     std::vector<int> time(10);
     for (int i = 0; i < 10; i++) {
@@ -53,31 +53,30 @@ std::vector<std::vector<int>> timer(void (*func)(int *, int, int), std::string p
       auto start = std::chrono::high_resolution_clock::now();
       func(arr, n, data.k);
       auto elapsed = std::chrono::high_resolution_clock::now() - start;
-      long long nanoseconds = isSorted(arr, n)
+      int64_t nanoseconds = isSorted(arr, n)
           ? std::chrono::duration_cast<std::chrono::nanoseconds>(elapsed).count()
           : -1;
       time[i] = nanoseconds;
     }
     times[(n - step) / step] = time;
   }
-  /*
-  for (int i = 0; i < 10; i++) {
-    std::vector<int> time(data.n / step);
-    for (int n = step; n <= data.n; n += step) {
-      for (int j = 0; j < data.n; j++) {
-        arr[j] = data.arr[j];
-      }
-      auto start = std::chrono::high_resolution_clock::now();
-      func(arr, n, data.k);
-      auto elapsed = std::chrono::high_resolution_clock::now() - start;
-      long long nanoseconds = isSorted(arr, n)
-          ? std::chrono::duration_cast<std::chrono::nanoseconds>(elapsed).count()
-          : -1;
-      time[(n - step) / step] = nanoseconds;
-    }
-    times.push_back(time);
-  }*/
-  //
   delete[] arr;
   return times;
+}
+
+std::vector<int64_t> counter(void (*func)(int *, int, int, int64_t &), std::string path) {
+  Data data = getData(path);
+  int *arr = new int[data.n];
+  int step = data.n == 300 ? 50 : 100;
+  std::vector<int64_t> counts(data.n / step);
+  for (int n = step; n <= data.n; n += step) {
+    int64_t count = 0;
+    for (int j = 0; j < data.n; j++) {
+      arr[j] = data.arr[j];
+    }
+    func(arr, n, data.k, count);
+    counts[(n - step) / step] = count;
+  }
+  delete[] arr;
+  return counts;
 }
