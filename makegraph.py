@@ -37,10 +37,11 @@ for i, name in enumerate(algorithm_data):
 
 # Create a line plot for each algorithm's measurement results and save it as a png file
 for algorithm_name, measurement_data in algorithm_results.items():
-    for measurement_type, measurements in measurement_data.items():
-        # Get the file name from the csv_path variable
-        file_name = csv_path.split('/')[-1]
+    # Create a new figure for each algorithm
+    plt.figure()
 
+    # Loop over each measurement type for the algorithm
+    for measurement_type, measurements in measurement_data.items():
         if len(array_sizes) > 10:
             # Only include every 10th array size on the x-axis
             x_ticks = range(0, len(array_sizes), 10)
@@ -54,16 +55,18 @@ for algorithm_name, measurement_data in algorithm_results.items():
             # Plot the data
             plt.plot(array_sizes, measurements, label=measurement_type)
 
-        # Set the title and axis labels for the plot with file name included
-        plt.title(f'{algorithm_name} Effectiveness by Array Size ({file_name})')
-        plt.xlabel('Array Size')
-        plt.ylabel('Measurement Result')
+    # Set the title and axis labels for the plot with file name included
+    file_name = csv_path.split('/')[-1]
+    plt.title(f'{algorithm_name} Effectiveness by Array Size ({file_name})')
+    plt.xlabel('Array Size')
+    plt.ylabel('Measurement Result')
 
-    # Add a legend and display the plot
+    # Add a legend and save the plot to a file
     plt.legend()
-
     results_dir = os.path.join("results", algorithm_name)
     os.makedirs(results_dir, exist_ok=True)
     plot_file_name = os.path.join(results_dir, f'{algorithm_name}_{file_name}.png')
     plt.savefig(plot_file_name)
-    plt.show()
+
+# Show all of the plots
+plt.show()
