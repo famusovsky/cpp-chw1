@@ -1,5 +1,9 @@
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
+
+csv_dir = os.path.dirname(os.path.realpath(__file__))
+os.chdir(csv_dir)
 
 # Get the path to the CSV file from user input
 csv_path = input("Enter the path to the CSV file: ")
@@ -31,7 +35,7 @@ for i, name in enumerate(algorithm_data):
         algorithm_results[algorithm_name] = {}
     algorithm_results[algorithm_name][measurement_type] = measurements
 
-# Create a line plot for each algorithm's measurement results
+# Create a line plot for each algorithm's measurement results and save it as a png file
 for algorithm_name, measurement_data in algorithm_results.items():
     for measurement_type, measurements in measurement_data.items():
         # Get the file name from the csv_path variable
@@ -57,4 +61,9 @@ for algorithm_name, measurement_data in algorithm_results.items():
 
     # Add a legend and display the plot
     plt.legend()
+
+    results_dir = os.path.join("results", algorithm_name)
+    os.makedirs(results_dir, exist_ok=True)
+    plot_file_name = os.path.join(results_dir, f'{algorithm_name}_{file_name}.png')
+    plt.savefig(plot_file_name)
     plt.show()
