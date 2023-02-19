@@ -7,8 +7,9 @@
 #include <string>
 #include <vector>
 
+// Метод, который запускает данные алгоритмы и записывает время их работы в данный файл
 void runTimeToFile(std::vector<void (*)(int *, int, int)> functions, std::vector<std::string> names,
-                std::vector<std::string> pathes, std::fstream &file) {
+                   std::vector<std::string> pathes, std::fstream &file) {
   for (int i = 0; i < static_cast<int>(functions.size()); i++) {
     for (int j = 0; j < static_cast<int>(pathes.size()); j++) {
       file << names[i] << " - " << pathes[j];
@@ -28,9 +29,10 @@ void runTimeToFile(std::vector<void (*)(int *, int, int)> functions, std::vector
   file.close();
 }
 
+// Метод, который запускает данные алгоритмы и записывает их количество элементарных операций в данный файл
 void runOperationsToFile(std::vector<void (*)(int *, int, int, int64_t &)> functions,
-                      std::vector<std::string> names, std::vector<std::string> pathes,
-                      std::fstream &file) {
+                         std::vector<std::string> names, std::vector<std::string> pathes,
+                         std::fstream &file) {
   for (int i = 0; i < static_cast<int>(functions.size()); i++) {
     for (int j = 0; j < static_cast<int>(pathes.size()); j++) {
       file << names[i] << " - " << pathes[j];
@@ -45,6 +47,7 @@ void runOperationsToFile(std::vector<void (*)(int *, int, int, int64_t &)> funct
   file.close();
 }
 
+// Метод, который создает файл по данному пути
 std::fstream createFile(std::string path) {
   std::fstream file;
   file.open(path, std::ios::out);
@@ -53,6 +56,7 @@ std::fstream createFile(std::string path) {
   return file;
 }
 
+// Метод, который записывает данные размеры массивов в данный файл
 void writeArraySizeToFile(int step, int size, std::fstream &file) {
   file << "Array size";
   for (int i = step; i <= size; i += step) {
@@ -97,6 +101,6 @@ int main() {
   file = createFile("../results/opcount4100.csv");
   writeArraySizeToFile(100, 4100, file);
   runOperationsToFile(opcount_functions, names, pathes4100, file);
-  
+
   return 0;
 }

@@ -1,5 +1,6 @@
 #include <iostream>
 
+// Функция сортировки подсчетом, с подсчетом операций
 void stableCountingSortOP(int *a, int n, int k, int64_t &count) {
   int *c = new int[k + 1];
   int *b = new int[n];

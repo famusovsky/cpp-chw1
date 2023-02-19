@@ -1,5 +1,6 @@
 #include <iostream>
 
+// Функция бинарного поиска, с подсчетом операций
 int binarySearch(int *arr, int key, int left, int right, int64_t &count) {
   while (left <= right) {
     int mid = left + (right - left) / 2;
@@ -15,6 +16,7 @@ int binarySearch(int *arr, int key, int left, int right, int64_t &count) {
   return left;
 }
 
+// Функция сортировки вставками с бинарным поиском, с подсчетом операций
 void binaryInsertionSortOP(int *arr, int n, int k, int64_t &count) {
   for (int i = 1; i < n; i++) {
     int key = arr[i];

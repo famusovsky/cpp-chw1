@@ -1,5 +1,6 @@
 #include <iostream>
 
+// Функция сортировки вставками, с подсчетом операций
 void insertionSortOP(int *begin, int n, int k, int64_t &count) {
   int *end = begin + n;
   if (begin != end) {

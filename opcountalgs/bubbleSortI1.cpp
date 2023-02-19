@@ -1,5 +1,6 @@
 #include <iostream>
 
+// Функция сортировки пузырьком с 1м условием Айверсона, с подсчетом операций
 void bubbleSortI1OP(int *arr, int n, int k, int64_t &count) {
   bool swapped;
   for (int i = 0; i < n - 1; i++) {

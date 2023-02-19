@@ -1,6 +1,7 @@
 #include <vector>
 #include <iostream>
 
+// Класс, представляющий собой кучу
 class Heap {
 public:
     Heap(int *arr, int n) {
@@ -62,6 +63,7 @@ private:
     std::vector<int> heap_;
 };
 
+// Метод пирамидальной сортировки
 void pyramideSort(int *arr, int n, int k) {
     Heap heap(arr, n);
     for (int i = n - 1; i >= 0; --i) {

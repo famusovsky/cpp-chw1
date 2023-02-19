@@ -1,3 +1,4 @@
+// Метод стабильной сортировки подсчетом
 void stableCountingSort(int *a, int n, int k) {
     int *c = new int[k + 1];
     int *b = new int[n];

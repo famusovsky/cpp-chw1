@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+// Cтруктура, которая хранит массив, его размер и максимальный элемент
 struct Data {
   int *arr;
   int n;
@@ -14,6 +15,7 @@ struct Data {
   }
 };
 
+// Функция, которая считывает из файла в объект Data массив, а также его размер и максимальный элемент
 Data getData(std::string path) {
   int n, k = -1;
   std::fstream file;
@@ -30,6 +32,7 @@ Data getData(std::string path) {
   return {arr, n, k};
 }
 
+// Функция, которая проверяет, отсортирован ли массив
 bool isSorted(int *arr, int n) {
   for (int i = 0; i < n - 1; i++) {
     if (arr[i] > arr[i + 1]) {

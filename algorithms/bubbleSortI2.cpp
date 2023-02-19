@@ -1,3 +1,4 @@
+// Метод пузырьковой сортировки со 2м условием Айверсона
 void bubbleSortI2(int *arr, int n, int k) {
     int newn = n;
     while (newn > 0) {

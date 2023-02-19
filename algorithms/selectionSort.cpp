@@ -1,3 +1,4 @@
+// Метод сортировки выбором
 void selectionSort(int *arr, int n, int k) {
     int i, j, min_idx;
     for (i = 0; i < n - 1; i++) {

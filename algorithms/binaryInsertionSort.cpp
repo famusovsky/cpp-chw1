@@ -10,6 +10,7 @@ int binarySearch(int *arr, int key, int left, int right) {
     return left;
 }
 
+// Метод сортировки вставками с бинарным поиском
 void binaryInsertionSort(int *arr, int n, int k) {
     for (int i = 1; i < n; i++) {
         int key = arr[i];

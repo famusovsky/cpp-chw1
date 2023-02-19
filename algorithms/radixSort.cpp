@@ -1,5 +1,6 @@
 #include <iostream>
 
+// Функция сортировки подсчетом
 void countingSort(int arr[], int n, int64_t exp) {
     int64_t *b = new int64_t[n];
     int64_t *c = new int64_t[256];
@@ -23,6 +24,7 @@ void countingSort(int arr[], int n, int64_t exp) {
     delete[] c;
 }
 
+// Метод цифровой сортировки по основанию 256
 void radixSort(int *arr, int n, int max) {
     int64_t exp = 1;
     while (max / exp > 0) {

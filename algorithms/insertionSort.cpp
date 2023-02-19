@@ -1,3 +1,4 @@
+// Метод сортировки вставками
 void insertionSort(int *begin, int n, int k) {
     int *end = begin + n;
     if (begin != end) {

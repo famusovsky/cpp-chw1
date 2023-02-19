@@ -6,6 +6,7 @@ using System.IO;
 
 Random random = new Random();
 var result = "";
+result += 4100 + " "; // or 300
 for (int i = 0; i < 4100; i++) // or i < 300
 {
      result += random.Next(0, 5) + " ";
@@ -23,6 +24,7 @@ using System.IO;
 Random random = new Random();
 var result = "";
 var start = 111;
+result += 4100 + " "; // or 300
 for (var i = 0; i < 4100; i++) // or i < 300
 {
      start += random.Next(-20, 100);
@@ -40,6 +42,7 @@ using System.IO;
 Random random = new Random();
 var result = "";
 SortedSet<int> numbers = new SortedSet<int>();
+result += 300 + " ";
 for (var i = 0; i < 300; i++)
 {
      var r = random.Next(1, 4100);
@@ -60,6 +63,7 @@ using System.IO;
 
 Random random = new Random();
 var result = "";
+result += 4100 + " ";
 for (var i = 4100; i >= 1; i--)
 {
      result += i + " ";

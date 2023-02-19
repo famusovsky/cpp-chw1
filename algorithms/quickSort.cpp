@@ -1,5 +1,6 @@
 #include <iostream>
 
+// Функция быстрой сортировки
 void quickSortRecursion(int *arr, int left, int right) {
   int i = left, j = right;
   int pivot = arr[(left + right) / 2];
@@ -24,6 +25,7 @@ void quickSortRecursion(int *arr, int left, int right) {
   }
 }
 
+// Метод вызывающий рекурсивную функцию быстрой сортировки
 void quickSort(int *arr, int n, int k) {
   quickSortRecursion(arr, 0, n - 1);
 }

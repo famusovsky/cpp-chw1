@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 
+// Класс, представляющий собой кучу, все методы которого включают в себя подсчет операций
 class Heap {
  public:
   Heap(int *arr, int n, int64_t &count) {
@@ -71,6 +72,7 @@ class Heap {
   std::vector<int> heap_;
 };
 
+// Метод пирамидальной сортировки, с подсчетом операций
 void pyramideSortOP(int *arr, int n, int k, int64_t &count) {
   Heap heap(arr, n, count);
   for (int i = n - 1; i >= 0; --i) {

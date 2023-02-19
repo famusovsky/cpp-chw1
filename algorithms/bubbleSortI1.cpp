@@ -1,3 +1,4 @@
+// Метод пузырьковой сортировки с 1м условием Айверсона
 void bubbleSortI1(int *arr, int n, int k) {
     bool swapped;
     for (int i = 0; i < n - 1; i++) {

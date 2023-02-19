@@ -1,5 +1,6 @@
 #include <iostream>
 
+// Функция сортировки Шелла (последовательность Шелла), с подсчетом операций
 void shellSortShOP(int *arr, int n, int k, int64_t &count) {
   int gap = n / 2;
   while (gap > 0) {

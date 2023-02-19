@@ -1,5 +1,6 @@
 #include <iostream>
 
+// Функция сортировки Шелла (последовательность Циура)
 void shellSortCr(int *arr, int n, int k) {
   int gap = 1;
   while (gap < n / 3) {

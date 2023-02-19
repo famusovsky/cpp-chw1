@@ -1,5 +1,6 @@
 #include <climits>
 
+// Функция слияния двух отсортированных массивов
 void merge(int *begin, int *middle, int *end) {
     int n_1 = middle - begin + 1, n_2 = end - middle + 1;
     int* left = new int[n_1];
@@ -24,6 +25,7 @@ void merge(int *begin, int *middle, int *end) {
     delete[] right;
 }
 
+// Рекурсивная функция сортировки слиянием
 void mergeSortRecursion(int *begin, int *end) {
     if (begin != end - 1 && begin != end) {
         auto middle = begin + (end - begin) / 2;
@@ -33,6 +35,7 @@ void mergeSortRecursion(int *begin, int *end) {
     }
 }
 
+// Метод вызывающий рекурсивную функцию сортировки слиянием
 void mergeSort(int *begin, int n, int k) {
     mergeSortRecursion(begin, begin + n);
 }

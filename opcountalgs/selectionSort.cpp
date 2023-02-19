@@ -1,5 +1,6 @@
 #include <iostream>
 
+// Функция сортировки выбором, с подсчетом операций
 void selectionSortOP(int *arr, int n, int k, int64_t &count) {
   int i, j, min_idx;
   for (i = 0; i < n - 1; i++) {
