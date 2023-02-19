@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-void runnerTime(std::vector<void (*)(int *, int, int)> functions, std::vector<std::string> names,
+void runTimeToFile(std::vector<void (*)(int *, int, int)> functions, std::vector<std::string> names,
                 std::vector<std::string> pathes, std::fstream &file) {
   for (int i = 0; i < static_cast<int>(functions.size()); i++) {
     for (int j = 0; j < static_cast<int>(pathes.size()); j++) {
@@ -25,10 +25,10 @@ void runnerTime(std::vector<void (*)(int *, int, int)> functions, std::vector<st
       file << std::endl;
     }
   }
-  file << std::endl;
+  file.close();
 }
 
-void runnerOperations(std::vector<void (*)(int *, int, int, int64_t &)> functions,
+void runOperationsToFile(std::vector<void (*)(int *, int, int, int64_t &)> functions,
                       std::vector<std::string> names, std::vector<std::string> pathes,
                       std::fstream &file) {
   for (int i = 0; i < static_cast<int>(functions.size()); i++) {
@@ -41,6 +41,22 @@ void runnerOperations(std::vector<void (*)(int *, int, int, int64_t &)> function
       }
       file << std::endl;
     }
+  }
+  file.close();
+}
+
+std::fstream createFile(std::string path) {
+  std::fstream file;
+  file.open(path, std::ios::out);
+  file.precision(2);
+  file << std::fixed;
+  return file;
+}
+
+void writeArraySizeToFile(int step, int size, std::fstream &file) {
+  file << "Array size";
+  for (int i = step; i <= size; i += step) {
+    file << ";" << i;
   }
   file << std::endl;
 }
@@ -65,35 +81,22 @@ int main() {
       "../arrays/4100-0-5.txt", "../arrays/4100-0-4000.txt",
       "../arrays/4100-almost-sorted.txt", "../arrays/4100-reversed.txt"};
   std::fstream file;
-  file.open("results.csv", std::ios::out);
-  file.precision(2);
-  file << std::fixed;
-  file << "Time in nanoseconds" << std::endl
-       << "Array size";
-  for (int i = 50; i <= 300; i += 50) {
-    file << ";" << i;
-  }
-  file << std::endl;
-  runnerTime(normal_functions, names, pathes300, file);
-  file << "Array size";
-  for (int i = 100; i <= 4100; i += 100) {
-    file << ";" << i;
-  }
-  file << std::endl;
-  runnerTime(normal_functions, names, pathes4100, file);
-  file << "Elemental operations" << std::endl
-       << "Array size";
-  for (int i = 50; i <= 300; i += 50) {
-    file << ";" << i;
-  }
-  file << std::endl;
-  runnerOperations(opcount_functions, names, pathes300, file);
-  file << "Array size";
-  for (int i = 100; i <= 4100; i += 100) {
-    file << ";" << i;
-  }
-  file << std::endl;
-  runnerOperations(opcount_functions, names, pathes4100, file);
-  file.close();
+
+  file = createFile("../results/time300.csv");
+  writeArraySizeToFile(50, 300, file);
+  runTimeToFile(normal_functions, names, pathes300, file);
+
+  file = createFile("../results/time4100.csv");
+  writeArraySizeToFile(100, 4100, file);
+  runTimeToFile(normal_functions, names, pathes4100, file);
+
+  file = createFile("../results/opcount300.csv");
+  writeArraySizeToFile(50, 300, file);
+  runOperationsToFile(opcount_functions, names, pathes300, file);
+
+  file = createFile("../results/opcount4100.csv");
+  writeArraySizeToFile(100, 4100, file);
+  runOperationsToFile(opcount_functions, names, pathes4100, file);
+  
   return 0;
 }
