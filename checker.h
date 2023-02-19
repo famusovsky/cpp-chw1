@@ -1,6 +1,5 @@
-//
-// Created by Алексей Степанов on 2023-02-15.
-//
+// АиСД-2, 2023, задание 5
+// Степанов А, БПИ212
 
 #ifndef CHW1__CHECKER_H_
 #define CHW1__CHECKER_H_

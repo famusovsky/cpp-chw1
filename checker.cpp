@@ -1,3 +1,6 @@
+// АиСД-2, 2023, задание 5
+// Степанов А, БПИ212
+
 #include <chrono>
 #include <fstream>
 #include <iostream>
